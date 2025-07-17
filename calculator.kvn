@@ -1,0 +1,15 @@
+// Kullanıcıdan iki sayı al ve toplama yap
+// Add two numbers together
+
+"Birinci sayıyı girin:" yaz
+a eşittir cevap()
+
+"İkinci sayıyı girin:" yaz
+b eşittir cevap()
+
+a, b ile topla işi:
+    a + b dön
+bitir
+
+sonuç eşittir a, b ile topla işi
+"Toplam: " + sonuç yaz

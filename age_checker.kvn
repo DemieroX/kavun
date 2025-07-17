@@ -1,0 +1,16 @@
+// Kullanıcı yaş kontrolü
+// User age checker
+
+"Adınız nedir?" yaz
+isim eşittir cevap()
+
+"Kaç yaşındasınız?" yaz
+yaş eşittir cevap()
+
+yaş büyüktür 18 ise:
+    "Merhaba " + isim + ", gençsin!" yaz
+yoksa yaş 18 eşit ise:
+    "Merhaba " + isim + ", tam 18'sin!" yaz 
+yoksa:
+    "Merhaba " + isim + ", olgunsun!" yaz 
+bitir
