@@ -53,13 +53,13 @@ bitir
 
 | Normal         | Kavun             |
 |----------------|-------------------|
-| =              | eşit              |
-| !=             | farklı            |
+| =              | eşit (at end)     |
+| !=             | farklı (at end)   |
 | <              | küçüktür          |
 | >              | büyüktür          |
 | >=, <=         | >=, <=            |
 | and            | ve                |
-| or             | ve                |
+| or             | veya              |
 | not            | değil (at end)    |
 
 
@@ -98,7 +98,7 @@ bitir
 
 ```kavun
 i için 1 den 10 kadar:
-    eğer i = 5 ise:
+    eğer i 5 eşit ise:
         "Beş bulundu!" yaz
         kır
     bitir
