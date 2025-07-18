@@ -4,13 +4,22 @@ Kavun, yeni başlayanlar için uygun, high-level bir programlama dilidir. Python
 
 Kavun is a beginner-friendly, high-level interpreted programming language. Inspired by Python, BASIC, and HyperTalk, it uses a natural Turkish-like syntax, designed to be readable and expressive. This language strives to have a very readable code base for native Turkish speakers to help understand how programming languages work while keeping in-tact the basic functionalities.
 
+## Katkıda Bulunun!
+
+Kavun halka açık ve büyümeye hazır bir programlama dil krokisidir. Yardım etmek isterseniz:
+
+- "Pull request" göndererek özellik(feature), örnek, düzenleme ya da hata düzeltmesi ekleyebilirsin
+- Yeni `.kvn` örnek dosyalarıyla dili tanıtmaya katkı sağlayabilirsin
+- Kendi derleyicinizi(compiler) veya yorumlayıcınızı(interpreter) yapmak isterseniz bu projeyi forklayın!
+
+Yapılan her katkı değerlidir. Kodlamaya yeni başlayanlara Türkçe tabanlı bir dil kazandırmak için birlikte çalışalım!
+
 ## Temel Özellikler (Key Features)
 
 - Turkish-inspired syntax (`eşittir`, `yaz`, `ise`, `bitir`, etc.) and syntax structure, similar to a spoken language, making it very easy to understand.
 - Natural function calls and flow control to keep things straight forward.
 - Beginner-friendly and helps to teach the fundamentals of coding.
 - Kavun script file's format is `.kvn`
-
 
 ## Dildeki Terimler (Language Guide)
 
@@ -51,16 +60,16 @@ bitir
 
 ### Karşılaştırmalar (Comparisons):
 
-| Normal         | Kavun             |
-|----------------|-------------------|
-| =              | eşit (at end)     |
-| !=             | farklı (at end)   |
-| <              | küçüktür          |
-| >              | büyüktür          |
-| >=, <=         | >=, <=            |
-| and            | ve                |
-| or             | veya              |
-| not            | değil (at end)    |
+| Normal         | Kavun               |
+|----------------|---------------------|
+| =              | eşit (at end)       |
+| !=             | farklı (at end)     |
+| <              | küçüktür            |
+| >              | büyüktür            |
+| >=, <=         | >=, <= (no keywords)|
+| and            | ve                  |
+| or             | veya                |
+| not            | değil (at end)      |
 
 
 
