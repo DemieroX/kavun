@@ -1,10 +1,13 @@
-# 🍈 Kavun Programming Language
+<div align="center">
+<img width="1500" height="500" alt="KavunBanner" src="https://github.com/user-attachments/assets/e5aa6518-dfac-4bdf-9242-29ca01d355c2" />
+</div>
 
+---
 Kavun, yeni başlayanlar için uygun, high-level bir programlama dilidir. Python, BASIC ve HyperTalk'tan esinlenerek, okunabilir ve anlaşılır olacak şekilde tasarlanmıştır, Türkçe benzeri bir syntax kullanır ve ana dili Türkçe olanlara programlama dillerinin nasıl çalıştığını anlatmakda yardımcı olmak için tanıdık bir yazım biçimi oluşturmayı hedefler.
 
 Kavun is a beginner-friendly, high-level interpreted programming language. Inspired by Python, BASIC, and HyperTalk, it uses a natural Turkish-like syntax, designed to be readable and expressive. This language strives to have a very readable code base for native Turkish speakers to help understand how programming languages work while keeping in-tact the basic functionalities.
 
-## Katkıda Bulunun!
+## 🍈Katkıda Bulunun!
 
 Kavun halka açık ve büyümeye hazır bir programlama dil krokisidir. Yardım etmek isterseniz:
 
