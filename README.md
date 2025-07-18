@@ -54,7 +54,7 @@ isim eşittir cevap()
 ```kavun
 yaş küçüktür 18 ise:
     "Gençsin." yaz
-yoksa yaş eşittir 18 ise:
+yoksa yaş 18 eşit ise:
     "Tam 18’sin!" yaz
 yoksa:
     "Olgunsun." yaz
