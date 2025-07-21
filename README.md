@@ -33,7 +33,7 @@ a = 5
 b eşittir 10
 isim eşittir "Ali"
 ```
-
+---
 ### Girdi ve Yazdırma (Input & Output)
 
 ```kavun
@@ -41,14 +41,14 @@ isim eşittir "Ali"
 isim eşittir cevap()
 // cevap(isim)
 ```
-
+---
 ### Yorum Satırı (Comments)
 
 ```kavun
 // Bu bir yorumdur
 // This is a comment
 ```
-
+---
 ### Koşullar (If / Else)
 
 ```kavun
@@ -60,7 +60,7 @@ yoksa:
     "Olgunsun." yaz
 bitir
 ```
-
+---
 ### Karşılaştırmalar (Comparisons):
 
 | Normal         | Kavun               |
@@ -85,7 +85,7 @@ yaş 18 farklı ise:
     "18 değilsin" yaz
 bitir
 ```
-
+---
 ### Döngüler (Loops)
 
 #### While Döngüsü (While Loop)
@@ -117,9 +117,31 @@ i için 1 den 10 kadar:
     devam
 bitir
 ```
-
+---
 ### Fonksiyonlar (Functions)
+Kavun, fonksiyon çağırmak için iki farklı yazım tarzını destekler:
 
+Kavun supports two types of function call syntax:
+1. Kavun Tarzı
+```
+3, 4 ile topla işi
+```
+2. Bilindik Tarz
+```
+iş topla(3, 4)
+```
+Her iki yazım da aynı sonucu verir. Tercihinize göre istediğinizi kullanabilirsiniz:
+
+Both function calls behave the same, use it however you like:
+```
+a, b ile topla işi:
+    a + b dön
+bitir
+
+sonuç eşittir iş topla(5, 10)
+sonuç yaz
+```
+---
 #### Fonksiyon Tanımı (Function Declaration)
 
 ```kavun
