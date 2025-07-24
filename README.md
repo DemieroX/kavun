@@ -23,6 +23,7 @@ Yapılan her katkı değerlidir. Kodlamaya yeni başlayanlara Türkçe tabanlı 
 ## Temel Özellikler (Key Features)
 
 - Turkish-inspired syntax (`eşittir`, `yaz`, `ise`, `bitir`, etc.) and syntax structure, similar to a spoken language, making it very easy to understand.
+- The language is whitespace sensitive, using “spaces” and indenting instead of curly braces.
 - Natural function calls and flow control to keep things straight forward.
 - Beginner-friendly and helps to teach the fundamentals of coding.
 - Kavun script file's format is `.kvn`
