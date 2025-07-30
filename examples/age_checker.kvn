@@ -8,9 +8,9 @@ isim eşittir cevap()
 yaş eşittir cevap()
 
 yaş büyüktür 18 ise:
-    "Merhaba " + isim + ", gençsin!" yaz
+    "Merhaba " + isim + ", olgunsun!" yaz
 yoksa yaş 18 eşit ise:
     "Merhaba " + isim + ", tam 18'sin!" yaz 
 yoksa:
-    "Merhaba " + isim + ", olgunsun!" yaz 
+    "Merhaba " + isim + ", gençsin!" yaz 
 bitir
