@@ -1,3 +1,10 @@
+# --- The Kavun Language Interpreter V0.1---
+# Bu Kavun dilinin ilk interpreter programıdır.
+# Fonksiyonlar dışında çoğu özellik basit de olsa çalışmaktadır.
+# age_checker.kvn hariç bütün örnek dosyaları çalışmaktadır.
+#
+# Çalıştırmak için: python interpreter.py dosya.kvn
+
 #!/usr/bin/env python3
 import re, sys
 
