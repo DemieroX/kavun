@@ -118,6 +118,7 @@ bitir
 
 ```kavun
 i için 1 den 10 kadar:
+    i yaz
     i 5 eşit ise:
         "Beş bulundu!" yaz
         kır
