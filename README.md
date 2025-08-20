@@ -43,7 +43,6 @@ isim eşittir "Ali"
 ```kavun
 "Merhaba dünya" yaz
 isim eşittir cevap()
-// cevap(isim)
 ```
 ---
 ### Yorum Satırı (Comments)
@@ -56,6 +55,8 @@ isim eşittir cevap()
 ### Koşullar (If / Else)
 
 ```kavun
+yaş eşittir cevap()
+
 yaş küçüktür 18 ise:
     "Gençsin." yaz
 yoksa yaş 18 eşit ise:
@@ -81,6 +82,8 @@ bitir
 
 
 ```kavun
+yaş eşittir cevap()
+
 yaş büyüktür 10 ve yaş küçüktür 20 ise:
     "Gençsin." yaz
 bitir
@@ -96,6 +99,7 @@ bitir
 
 ```kavun
 cevap eşittir ""
+
 cevap "çık" değil iken:
     "Komut girin:" yaz
     komutum eşittir cevap() // cevap(komutum)
@@ -114,7 +118,7 @@ bitir
 
 ```kavun
 i için 1 den 10 kadar:
-    eğer i 5 eşit ise:
+    i 5 eşit ise:
         "Beş bulundu!" yaz
         kır
     bitir
