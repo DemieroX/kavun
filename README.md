@@ -39,11 +39,13 @@ isim eşittir "Ali"
 anahtar eşittir doğru // Doğru = True, Yanlış = False
 ```
 ---
-### Girdi ve Yazdırma (Input & Output)
+### Girdi, Temizle ve Yazdırma (Input, Clear & Output)
 
 ```kavun
 "Merhaba dünya" yaz
 isim eşittir cevap()
+temizle
+"Merhaba " + isim yaz
 ```
 ---
 ### Yorum Satırı (Comments)
