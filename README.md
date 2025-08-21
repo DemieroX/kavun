@@ -36,6 +36,7 @@ Yapılan her katkı değerlidir. Kodlamaya yeni başlayanlara Türkçe tabanlı 
 a = 5
 b eşittir 10
 isim eşittir "Ali"
+anahtar eşittir doğru // Doğru = True, Yanlış = False
 ```
 ---
 ### Girdi ve Yazdırma (Input & Output)
