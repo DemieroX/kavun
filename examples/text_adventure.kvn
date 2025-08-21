@@ -1,0 +1,108 @@
+// Metin macera oyunu örneği
+// Text adventure game example
+
+temizle
+                                 
+" .--..--..--..--..--..--..--..--..--..--..--..--..--..--..--..--..--..--..--..--..--..--..--. " yaz
+"/ .. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \" yaz
+"\ \/\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ \/ /" yaz
+" \/ /`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'\/ / " yaz
+" / /\                                                                                    / /\ " yaz
+"/ /\ \    ______           _                 _               _  __                _     / /\ \" yaz
+"\ \/ /   |__  (_)_ __   __| | __ _ _ __   __| | __ _ _ __   | |/ /__ _  ___ _ ___| |    \ \/ /" yaz
+" \/ /      / /| | '_ \ / _` |/ _` | '_ \ / _` |/ _` | '_ \  | ' // _` |/ __| / __| |     \/ / " yaz
+" / /\     / /_| | | | | (_| | (_| | | | | (_| | (_| | | | | | . \ (_| | (__| \__ \_|     / /\ " yaz
+"/ /\ \   /____|_|_| |_|\__,_|\__,_|_| |_|\__,_|\__,_|_| |_| |_|\_\__,_|\___|_|___(_)    / /\ \" yaz
+"\ \/ /                                                                  )_)    )_)      \ \/ /" yaz
+" \/ /                                  ENTER ile başla!                                 \/ / " yaz
+" / /\.--..--..--..--..--..--..--..--..--..--..--..--..--..--..--..--..--..--..--..--..--./ /\ " yaz
+"/ /\ \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \/\ \" yaz
+"\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `' /" yaz
+" `--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--' " yaz
+komut eşittir cevap()
+temizle
+
+oyun_bitti eşittir 0
+anahtar_alındı eşittir 0
+lamba_alındı eşittir 0
+
+// Başlangıç metni
+"" yaz
+"Soğuk bir rüzgarın esmesiyle dar taş duvarlar etrafında gözlerini açıyorsun." yaz
+"Kendini yıpranmış kıyafetler içinde, üşümüş, aç bir halde buluyorsun." yaz
+"Neden, nasıl buraya düştüğünü hatırlamıyorsun, ana buradan kaçman" yaz
+"gerektiğini hissediyorsun..." yaz
+
+// Ana oyun döngüsü
+oyun_bitti 0 eşit iken:
+    "Soğuk, kastvetli bir zindan hücresindesin." yaz
+    "Duvara yaslanmış iskelet kalıntılar, zincirlerin arasında yürüyen" yaz
+    "böcekler dışında etrafda başka kimse yok... şimdilik yanlızsın." yaz
+    "- Yerdeki kırık eşyalar arasında bir gaz lambası gözüne çarpıyor." yaz
+    "- Odanın sonunda metal bir giriş var. Odanın içerisi zifiri karanlık..." yaz
+    "- Zindanın öbür ucunda büyük paslı bir kapı var. Üzerinde ağır bir kilit takılı." yaz
+    "--------------------------------------------------------------------------------" yaz
+    " L> Ne yapmak istersin? (lamba, karanlık, kapı, çık)" yaz
+    komut eşittir cevap()
+    temizle	
+
+    // Lamba alma
+    komut "lamba" eşit ise:
+        lamba_alındı eşittir 1
+	"> Yerdeki lambayı inceledin. Paslı, uzun zamandır kullanılmamış." yaz
+	"İçinde çok az yağ kalmış ama bir süre seni idare edebilir. Artık karanlık" yaz
+	"ortamlarda güvende olucaksın. Tek bir yerde harcama..." yaz
+        ">> Paslı gaz lambasını eline aldın." yaz
+    bitir
+
+    // Karanlık odaya gitme
+    komut "karanlık" eşit ise:
+        lamba_alındı 0 eşit ise:
+	    "> Karanlık oda girişin önüne yaklaşıyorsun. Derinlerden gelen soğuk," yaz
+	    "ürpertici bir esinti var. İçinde kötü bir his var ve girişten uzaklaştın." yaz
+            "> Karanlık çok korkutucu, burada seni bir öcü yiyebilir!" yaz
+        bitir
+        lamba_alındı 1 eşit ise:
+            ">> Eski gaz lambasını zar zor yaktın." yaz
+	    "Odanın alaca karanlığı arasında zayıf bir cıvılcım canlandı. " yaz
+            "Lambanın ışığı zayıf ama içeriyi yeterince aydınlatıyor." yaz
+            "Karanlık köşelerden gelen fısıldama sesleri tüylerini ürpertiyor." yaz
+            "Odada sadece kırık bir sandalye, mermer bir masa gözüne çarpıyor." yaz
+            "Masanın üzerinde hafif parlayan, ucu paslı bir anahtar görüyorsun." yaz
+   	    "--------------------------------------------------------------------------------" yaz
+            " L> Anahtarı almak ister misin? (evet/hayır)" yaz
+            karar eşittir cevap()
+	    temizle
+            karar "evet" eşit ise:
+                anahtar_alındı eşittir 1
+                ">> Anahtarı aldın, cebine koydun." yaz
+            bitir
+        bitir
+    bitir
+
+    // Çıkış kapısı
+    komut "kapı" eşit ise:
+        anahtar_alındı 1 eşit ise:
+            "> Anahtarı kullandın ve kapıdaki kilite soktun..." yaz
+            "Bir süre sonra eski kilitin mekanizması serbest kalır," yaz
+            "ağır zincirler büyük bir ses ile yere düşer. Yavaşça kapıyı itiyorsun." yaz
+            "Kapının aralanmasıyla parlak bir ışık zindanı aydınlatır. Zindan fısıldamaları" yaz
+            "kuş şarkılarına döner ve özgürlüğe doğru ilerliyorsun..." yaz
+   	    "--------------------------------------------------------------------------------" yaz
+            "> Zindandan kaçtın ve özgürlüğe kavuştun!" yaz
+            oyun_bitti eşittir 1
+            kır
+        bitir
+        anahtar_alındı 0 eşit ise:
+            "> Ağır paslı kapıya doğru ilerliyorsun." yaz
+	    "Eski olduğu kadar dayanıklı bir kapı. Kapıda çok ağır bir kilit var." yaz
+            "Anahtarsız buraya giremezsin..." yaz
+        bitir
+    bitir
+    komut "çık" eşit ise:
+            ">> Oyundan çıktın ve sanal benliğini terk ettin." yaz
+	    "Bir parçan gizemli zindanda mahsur kaldı..." yaz
+            oyun_bitti eşittir 1
+            kır
+        bitir
+bitir
