@@ -1,22 +1,21 @@
-# --- The Kavun Language Interpreter V0.5---
-# Bu Kavun dilinin Python tabanlı interpreter programıdır.
-# Çalıştırmak için: python interpreter.py dosya.kvn
-
 #!/usr/bin/env python3
+# Kavun Interpreter - updated (string-protected translations, Turkish booleans, temizle)
 import re, sys, ast, traceback, os
 
-class BreakLoop(Exception): pass   # Exception used to break out of loops  # Exception: break statement
-class ContinueLoop(Exception): pass   # Exception used to continue loops  # Exception: continue statement
-class ReturnFunction(Exception):   # Exception used to return a value from a function  # Exception: return from function
+# --- Exceptions for control flow ---
+class BreakLoop(Exception): pass   # used by 'kır'
+class ContinueLoop(Exception): pass  # used by 'devam'
+class ReturnFunction(Exception):      # used by 'dön <expr>' or 'dön'
     def __init__(self, value):
         self.value = value
 
-# Çalışma zamanı durumları
-env = [{}]               # Environment stack; env[0] is global, env[-1] is current frame               # Çerçeve yığını; env[0] global, env[-1] güncel
-functions = {}           # Function definitions: name -> (params, body)           # isim -> (params, body_lines)
-expr_cache = {}          # Cache for compiled expressions          # ifade metni -> derlenmiş kod
-call_trace = []          # Call trace for error reporting          # çağrı yığını (hata raporları için)
+# --- Runtime state ---
+env = [{}]               # stack of variable frames; env[0] is global
+functions = {}           # user-defined functions: name -> (params, body_lines)
+expr_cache = {}          # cache compiled expressions
+call_trace = []          # simple call trace for error messages
 
+# --- Helpers ---
 def current_frame():
     return env[-1]
 
@@ -32,12 +31,14 @@ def set_var(name, value):
     current_frame()[name] = value
 
 def get_var_mapping():
+    # merge frames for eval locals (later frames override earlier)
     merged = {}
     for frame in env:
         merged.update(frame)
     return merged
 
-def split_args(s: str):   # Split function call arguments by top-level commas
+# split top-level comma-separated args (handles parentheses nesting)
+def split_args(s: str):
     parts, buf, depth = [], [], 0
     i = 0
     while i < len(s):
@@ -55,21 +56,59 @@ def split_args(s: str):   # Split function call arguments by top-level commas
         parts.append(''.join(buf).strip())
     return [p for p in parts if p != '']
 
-def parse_input_value(s: str):   # Parse input into int, float, bool, or string
+# Collect a block of lines until the matching 'bitir', handling nested blocks.
+def collect_block(lines, ptr):
+    """
+    Collect lines of a block starting at ptr until the matching 'bitir' for this block.
+    Nested blocks (lines ending with ':') are tracked with a depth counter.
+    Returns (body_list, ptr_index_of_matching_bitir).
+    """
+    body = []
+    depth = 0
+    while ptr < len(lines):
+        ln = lines[ptr].strip()
+        # if closing for this block, stop (do not consume it)
+        if ln == 'bitir' and depth == 0:
+            break
+        # nested block start (e.g., '... ise:', '... iken:', '... işi:')
+        if ln.endswith(':'):
+            depth += 1
+            body.append(lines[ptr])
+            ptr += 1
+            continue
+        # closing of an inner block
+        if ln == 'bitir' and depth > 0:
+            depth -= 1
+            body.append(lines[ptr])
+            ptr += 1
+            continue
+        body.append(lines[ptr])
+        ptr += 1
+    return body, ptr
+
+# parse user input into int/float/bool/string (supports Turkish 'doğru'/'yanlış')
+def parse_input_value(s: str):
     s = s.strip()
-    if s.lower() == 'true': return True
-    if s.lower() == 'false': return False
-    if re.fullmatch(r'[+-]?\d+', s): return int(s)
-    if re.fullmatch(r'[+-]?\d+\.\d*', s): return float(s)
+    low = s.lower()
+    if low == 'true' or low == 'doğru':
+        return True
+    if low == 'false' or low == 'yanlış':
+        return False
+    if re.fullmatch(r'[+-]?\d+', s):
+        return int(s)
+    if re.fullmatch(r'[+-]?\d+\.\d*', s):
+        return float(s)
     return s
 
-def kv_add(a, b):   # Safe addition/concatenation between strings and numbers
+# safe plus: try arithmetic, else stringify and concat
+def kv_add(a, b):
     try:
         return a + b
     except Exception:
         return str(a) + str(b)
 
-class AddTransformer(ast.NodeTransformer):   # AST transformer to replace '+' with kv_add
+# AST transform to turn '+' into kv_add(a, b)
+class AddTransformer(ast.NodeTransformer):
     def visit_BinOp(self, node):
         self.generic_visit(node)
         if isinstance(node.op, ast.Add):
@@ -80,22 +119,60 @@ class AddTransformer(ast.NodeTransformer):   # AST transformer to replace '+' wi
             )
         return node
 
-def translate_ops(e: str):   # Translate Turkish operators to Python equivalents
+# translate Turkish operators/keywords inside expressions to Python
+# NOTE: This function expects input where string literals have been replaced
+# with placeholders, so it can safely translate without touching string content.
+def translate_ops(e: str):
+    # relational phrases first (keep flexible)
     e = re.sub(r'(\S+)\s+(\S+)\s+eşit\b',   r'\1 == \2', e)
     e = re.sub(r'(\S+)\s+(\S+)\s+farklı\b', r'\1 != \2', e)
     e = re.sub(r'\beşit\b',     '==',  e)
     e = re.sub(r'\bfarklı\b',   '!=',  e)
     e = re.sub(r'\bküçüktür\b', '<',   e)
     e = re.sub(r'\bbüyüktür\b', '>',   e)
+    # boolean literals (Turkish)
+    e = re.sub(r'\bdoğru\b', 'True', e)
+    e = re.sub(r'\byanlış\b', 'False', e)
+    # logical operators
     e = re.sub(r'\bve\b',       'and', e)
     e = re.sub(r'\bveya\b',     'or',  e)
     e = re.sub(r'\bdeğil\b',    'not', e)
     return e
 
-def evaluate(expr: str):   # Evaluate a Kavun expression
-    e = expr.strip()
+# Helper: replace string literals with placeholders so translators don't touch them
+def shield_strings(expr: str):
+    """
+    Replace string literals with placeholders.
+    Returns (shielded_expr, placeholders_list)
+    placeholders_list is list of original string literals in order: ['"abc"', "'a\\'b'"]
+    Note: pattern intentionally does NOT treat backslashes as escapes. Kavun
+    strings may contain raw backslashes (even before the closing quote).
+    """
+    # Use a simple "match until next same-quote" pattern so we do not treat \ as escape.
+    pattern = re.compile(r'(\"[^\"]*\"|\'[^\']*\')', re.UNICODE)
+    placeholders = []
+    def repl(m):
+        placeholders.append(m.group(0))
+        return f"__KAVUN_STR_{len(placeholders)-1}__"
+    shielded = pattern.sub(repl, expr)
+    return shielded, placeholders
 
-    m = re.match(r'^(?P<args>.+?)\s+ile\s+(?P<fname>\w+)\s+işi$', e)
+def restore_strings(expr: str, placeholders):
+    # Replace placeholders with safe Python string literals using repr to
+    # preserve backslashes and quotes exactly as intended by the user.
+    for i, s in enumerate(placeholders):
+        inner = s[1:-1]  # remove surrounding quotes
+        expr = expr.replace(f"__KAVUN_STR_{i}__", repr(inner))
+    return expr
+
+# evaluate an expression (supports both call styles and Python-like expressions)
+def evaluate(expr: str):
+    e = expr.strip()
+    shielded, placeholders = shield_strings(e)
+    e2 = shielded
+
+    # 1) Call style: "<args> ile <fname> işi"
+    m = re.match(r'^(?P<args>.+?)\s+ile\s+(?P<fname>\w+)\s+işi$', e2)
     if m:
         raw_args = m.group('args')
         fname    = m.group('fname')
@@ -104,7 +181,8 @@ def evaluate(expr: str):   # Evaluate a Kavun expression
         arg_vals = [evaluate(a.strip()) for a in split_args(raw_args)]
         return call_function(fname, arg_vals)
 
-    m = re.match(r'^iş\s+(?P<fname>\w+)\s*\((?P<args>.*)\)\s*$', e)
+    # 2) Call style: "iş <fname>(arg1, arg2, ...)"
+    m = re.match(r'^iş\s+(?P<fname>\w+)\s*\((?P<args>.*)\)\s*$', e2)
     if m:
         fname = m.group('fname')
         if fname not in functions:
@@ -113,7 +191,11 @@ def evaluate(expr: str):   # Evaluate a Kavun expression
         arg_vals = [] if raw_args == '' else [evaluate(a.strip()) for a in split_args(raw_args)]
         return call_function(fname, arg_vals)
 
-    translated = translate_ops(e)
+    # 3) Translate Turkish ops and compile with AST transform (kv_add)
+    translated = translate_ops(e2)
+    # restore string literals into safe Python string literals
+    translated = restore_strings(translated, placeholders)
+
     key = translated
     code_obj = expr_cache.get(key)
     if code_obj is None:
@@ -136,7 +218,8 @@ def evaluate(expr: str):   # Evaluate a Kavun expression
     except Exception as ex:
         raise RuntimeError(f"İfade değerlendirme hatası [{expr}]: {ex}")
 
-def call_function(fname, arg_values):   # Call a user-defined function
+# call a user function by name (simple dispatcher)
+def call_function(fname, arg_values):
     if fname not in functions:
         raise RuntimeError(f"Tanınmayan fonksiyon: {fname}")
     params, body = functions[fname]
@@ -156,7 +239,8 @@ def call_function(fname, arg_values):   # Call a user-defined function
         pop_frame()
     return ret
 
-def run_block(lines, start=0):   # Run a block of Kavun code line by line  # Main interpreter loop, executes lines
+# Main interpreter loop: execute lines of a block
+def run_block(lines, start=0):
     idx = start
     while idx < len(lines):
         if call_trace:
@@ -164,18 +248,36 @@ def run_block(lines, start=0):   # Run a block of Kavun code line by line  # Mai
         raw  = lines[idx]
         line = raw.strip()
 
+        # skip blanks and comments
         if not line or line.startswith("//"):
             idx += 1
             continue
 
+        # end of a block
         if line == "bitir":
             return idx + 1
 
+        # console clear: 'temizle'
+        if line == "temizle":
+            # Cross-platform clear
+            try:
+                if os.name == 'nt':
+                    os.system('cls')
+                else:
+                    os.system('clear')
+            except Exception:
+                # fallback: lots of newlines
+                print("\n" * 80)
+            idx += 1
+            continue
+
+        # loop controls
         if line == "kır":
             raise BreakLoop()
         if line == "devam":
             raise ContinueLoop()
 
+        # return from function
         if line == "dön":
             raise ReturnFunction(None)
         m = re.match(r'^(.+)\s+dön$', line)
@@ -183,7 +285,8 @@ def run_block(lines, start=0):   # Run a block of Kavun code line by line  # Mai
             val = evaluate(m.group(1).strip())
             raise ReturnFunction(val)
 
-        m = re.match(r'^(.+?)\s*(?:eşittir|=)\s*(.+)$', line)  # Variable assignment
+        # assignment: "var eşittir expr" or "var = expr"
+        m = re.match(r'^(.+?)\s*(?:eşittir|=)\s*(.+)$', line)
         if m:
             var  = m.group(1).strip()
             expr = m.group(2).strip()
@@ -195,7 +298,8 @@ def run_block(lines, start=0):   # Run a block of Kavun code line by line  # Mai
             idx += 1
             continue
 
-        m = re.match(r'^(.+)\s+yaz$', line)  # Print statement
+        # print: "<expr> yaz"
+        m = re.match(r'^(.+)\s+yaz$', line)
         if m:
             try:
                 print(evaluate(m.group(1).strip()))
@@ -204,54 +308,59 @@ def run_block(lines, start=0):   # Run a block of Kavun code line by line  # Mai
             idx += 1
             continue
 
-        if line.endswith(" ise:"):  # If-Else chain
+        # If-Else chain handling (collect clauses using collect_block)
+        if line.endswith(" ise:"):
             clauses, ptr = [], idx
+            # collect consecutive if/elif clauses
             while ptr < len(lines):
                 ln = lines[ptr].strip()
                 m2 = re.match(r'^(yoksa\s+)?(.+?)\s+ise:$', ln)
-                if not m2: break
+                if not m2:
+                    break
                 is_elif = bool(m2.group(1))
                 cond    = m2.group(2).strip()
-                ptr    += 1
-                body    = []
-                while ptr < len(lines):
-                    nxt = lines[ptr].strip()
-                    if nxt.endswith(" ise:") or nxt.startswith("yoksa") or nxt=="bitir":
-                        break
-                    body.append(lines[ptr])
-                    ptr += 1
+                ptr += 1
+                body, ptr = collect_block(lines, ptr)
                 clauses.append(('elif' if is_elif else 'if', cond, body))
 
+            # optional else "yoksa:"
             if ptr < len(lines) and lines[ptr].strip() == "yoksa:":
                 ptr += 1
-                else_body = []
-                while ptr < len(lines) and lines[ptr].strip() != "bitir":
-                    else_body.append(lines[ptr])
-                    ptr += 1
+                else_body, ptr = collect_block(lines, ptr)
                 clauses.append(('else', None, else_body))
 
-            while ptr < len(lines) and lines[ptr].strip() == "bitir":
-                ptr += 1
-
+            # execute first matching clause
             executed = False
             for typ, cond, body in clauses:
                 if not executed and typ in ("if", "elif") and evaluate(cond):
-                    run_block(body, 0)
+                    try:
+                        run_block(body, 0)
+                    except ContinueLoop:
+                        # continue inside current containing loop
+                        pass
+                    except BreakLoop:
+                        # propagate break to outer loop handler
+                        raise
                     executed = True
                 elif not executed and typ == "else":
-                    run_block(body, 0)
+                    try:
+                        run_block(body, 0)
+                    except ContinueLoop:
+                        pass
+                    except BreakLoop:
+                        raise
                     executed = True
 
-            idx = ptr
+            # skip the closing 'bitir' for the whole if-else block
+            idx = ptr + 1
             continue
 
-        m = re.match(r'^(.+?)\s+iken:$', line)  # While loop
+        # While loop: "<cond> iken:" ... "bitir"
+        m = re.match(r'^(.+?)\s+iken:$', line)
         if m:
             cond = m.group(1).strip()
             ptr  = idx + 1
-            body = []
-            while ptr < len(lines) and lines[ptr].strip() != "bitir":
-                body.append(lines[ptr]); ptr += 1
+            body, ptr = collect_block(lines, ptr)
             try:
                 while evaluate(cond):
                     try:
@@ -263,14 +372,13 @@ def run_block(lines, start=0):   # Run a block of Kavun code line by line  # Mai
             idx = ptr + 1
             continue
 
-        m = re.match(r'^(\w+)\s+için\s+([+-]?\d+)\s+den\s+([+-]?\d+)\s+kadar:$', line)  # For loop
+        # For loop: "i için X den Y kadar:" ... "bitir"
+        m = re.match(r'^(\w+)\s+için\s+([+-]?\d+)\s+den\s+([+-]?\d+)\s+kadar:$', line)
         if m:
             var     = m.group(1)
             lo, hi  = int(m.group(2)), int(m.group(3))
             ptr     = idx + 1
-            body    = []
-            while ptr < len(lines) and lines[ptr].strip() != "bitir":
-                body.append(lines[ptr]); ptr += 1
+            body, ptr = collect_block(lines, ptr)
             for i in range(lo, hi + 1):
                 set_var(var, i)
                 try:
@@ -282,20 +390,20 @@ def run_block(lines, start=0):   # Run a block of Kavun code line by line  # Mai
             idx = ptr + 1
             continue
 
-        m = re.match(r'^(.+?)\s+ile\s+(.+?)\s+işi:$', line)  # Function definition
+        # Function definition: "a, b ile topla işi:" ... "bitir"
+        m = re.match(r'^(.+?)\s+ile\s+(.+?)\s+işi:$', line)
         if m:
             raw_args = m.group(1)
             fname    = m.group(2).strip()
             params   = [a.strip() for a in split_args(raw_args)]
             ptr      = idx + 1
-            body     = []
-            while ptr < len(lines) and lines[ptr].strip() != "bitir":
-                body.append(lines[ptr]); ptr += 1
+            body, ptr = collect_block(lines, ptr)
             functions[fname] = (params, body)
             idx = ptr + 1
             continue
 
-        m = re.match(r'^(.+?)\s+ile\s+(.+?)\s+işi$', line)  # Function call (style 1)
+        # Void function call statements (both styles)
+        m = re.match(r'^(.+?)\s+ile\s+(.+?)\s+işi$', line)
         if m:
             try:
                 evaluate(f"{m.group(1)} ile {m.group(2)} işi")
@@ -303,7 +411,7 @@ def run_block(lines, start=0):   # Run a block of Kavun code line by line  # Mai
                 print(f"[Hata satır {idx+1}] {ex}")
             idx += 1
             continue
-        m = re.match(r'^iş\s+(\w+)\s*\((.*)\)\s*$', line)  # Function call (style 2)
+        m = re.match(r'^iş\s+(\w+)\s*\((.*)\)\s*$', line)
         if m:
             try:
                 evaluate(line)
@@ -312,12 +420,14 @@ def run_block(lines, start=0):   # Run a block of Kavun code line by line  # Mai
             idx += 1
             continue
 
+        # unknown command
         print(f"[Hata satır {idx+1}] Tanınmayan komut: {line}")
         idx += 1
 
     return idx
 
-def print_runtime_error(exc):   # Print runtime errors with call trace
+# Print a short runtime trace (Turkish)
+def print_runtime_error(exc):
     print("Çalışma zamanı hatası:", exc)
     if call_trace:
         print("Çağrı yığını (son çağrı en üstte):")
@@ -330,7 +440,7 @@ def print_runtime_error(exc):   # Print runtime errors with call trace
                 print(f"  - {name} (satır {line})")
     print("Hata detaylarını görmek için ortam değişkeni KAVUN_DEBUG=1 ile tekrar çalıştırın.")
 
-def main():   # Program entry point
+def main():
     if len(sys.argv) != 2:
         print(" __    __                                        ")
         print("|  \\  /  \\                                       ")
@@ -342,7 +452,7 @@ def main():   # Program entry point
         print("| $$  \\$$\\\\$$    $$   \\$$$    \\$$    $$| $$  | $$")
         print(" \\$$   \\$$ \\$$$$$$$    \\$      \\$$$$$$  \\$$   \\$$")
         print("")
-        print("------- The Kavun Language Interpreter V0.5-------")
+        print("----- The Kavun Language Interpreter V0.6-------")
         print("")
         print("Kullanım: python interpreter.py <dosya.kvn>")
         print("")
@@ -356,7 +466,7 @@ def main():   # Program entry point
 
     non_blank = [ln for ln in lines if ln.strip() and not ln.strip().startswith("//")]
     if len(non_blank) == 0:
-        print("KAVUN: Çalıştırılan dosya boş. Denemeniz için bir 'Merhaba Dünya' örneği:")
+        print("Çalıştırılan dosya boş. Bir 'Merhaba Dünya' örneği ile başlayabilirsiniz:")
         print('\"Merhaba Dünya\" yaz')
         sys.exit(0)
 
