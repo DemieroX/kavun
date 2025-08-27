@@ -1,0 +1,70 @@
+// Eğlenceli Kavun Oyunu
+// Fun Kavun Game
+
+temizle
+"🎮 Eğlenceli Kavun Oyununa Hoş Geldiniz! 🎮" mavi_yaz
+yeni_satir
+
+"Oyun başlıyor..." animasyonlu_yaz
+2 saniye bekle
+animasyon_durdur
+
+"Oyun kuralları:" sari_yaz
+"1. 1-20 arasında bir sayı tutacağım" yaz
+"2. Sen tahmin edeceksin" yaz
+"3. Her tahminde renkli ipucu vereceğim" yaz
+yeni_satir
+
+// Oyun başlat
+gizli_sayi eşittir 1 ile 20 arasi_rastgele()
+tahmin_sayisi eşittir 0
+maksimum_tahmin eşittir 7
+
+"Oyun başlıyor! " + maksimum_tahmin + " hakkın var." yesil_yaz
+yeni_satir
+
+tahmin_sayisi küçüktür maksimum_tahmin iken:
+    "Tahmin #" + (tahmin_sayisi + 1) + " (1-20):" mavi_yaz
+    tahmin eşittir cevap()
+    tahmin_sayisi eşittir tahmin_sayisi + 1
+    
+    tahmin eşit gizli_sayi ise:
+        "🎉 TEBRİKLER! " + tahmin_sayisi + " denemede doğru tahmin ettin!" yesil_yaz
+        "Gizli sayı: " + gizli_sayi yaz
+        kalp_ciz()
+        kır
+    yoksa tahmin küçüktür gizli_sayi ise:
+        "📈 Daha büyük bir sayı dene!" sari_yaz
+        kalan_hak eşittir maksimum_tahmin - tahmin_sayisi
+        kalan_hak + " hakkın kaldı" mavi_yaz
+    yoksa:
+        "📉 Daha küçük bir sayı dene!" sari_yaz
+        kalan_hak eşittir maksimum_tahmin - tahmin_sayisi
+        kalan_hak + " hakkın kaldı" mavi_yaz
+    
+    yeni_satir
+bitir
+
+tahmin_sayisi eşit maksimum_tahmin ise:
+    "😔 Maalesef kaybettin!" kirmizi_yaz
+    "Gizli sayı: " + gizli_sayi yaz
+    ucgen_ciz(3)
+bitir
+
+yeni_satir
+"Oyun bitti! Tekrar oynamak ister misin? (evet/hayır):" mavi_yaz
+cevap eşittir cevap()
+
+cevap eşit "evet" ise:
+    "Yeni oyun başlıyor..." animasyonlu_yaz
+    2 saniye bekle
+    animasyon_durdur
+    "Oyun yeniden başlatıldı!" yesil_yaz
+bitir
+
+cevap eşit "hayır" ise:
+    "Güle güle! 👋" mor_yaz
+    kalp_ciz()
+bitir
+
+"Oyun tamamlandı!" yesil_yaz
