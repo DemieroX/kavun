@@ -28,8 +28,6 @@ Kavun dilini öğrenmek için aşağıdaki örnek dosyaları inceleyebilirsiniz:
 - `dosya_islemleri.kvn` - Dosya işlemleri
 - `basit_oyun.kvn` - Basit sayı oyunu
 - `gelismis_hesap_makinesi.kvn` - Gelişmiş hesap makinesi
-
-### Yeni Eklenen Özellikler
 - `renkli_ornekler.kvn` - Renkli yazdırma ve ASCII çizim
 - `sozluk_ornegi.kvn` - Sözlük işlemleri
 - `eglenceli_oyun.kvn` - Eğlenceli renkli oyun
