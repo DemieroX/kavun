@@ -1,0 +1,51 @@
+// Renkli Yazdırma ve Animasyon Örnekleri
+// Colored Output and Animation Examples
+
+temizle
+"🎨 Renkli Kavun Dili Örnekleri 🎨" yesil_yaz
+yeni_satir
+
+"Bu örnek renkli yazdırma ve animasyon özelliklerini gösterir." mavi_yaz
+yeni_satir
+
+// Renkli yazdırma örnekleri
+"Başarılı işlem!" yesil_yaz
+"Hata oluştu!" kirmizi_yaz
+"Uyarı mesajı!" sari_yaz
+"Bilgi mesajı" mavi_yaz
+"Özel mesaj" mor_yaz
+"Not mesajı" cyan_yaz
+
+yeni_satir
+"Animasyon örneği başlıyor..." yaz
+"Yükleniyor..." animasyonlu_yaz
+3 saniye bekle
+animasyon_durdur
+
+yeni_satir
+"Animasyon tamamlandı!" yesil_yaz
+
+// ASCII çizim örnekleri
+yeni_satir
+"ASCII Çizim Örnekleri:" mavi_yaz
+yeni_satir
+
+"Üçgen çizimi:" yaz
+ucgen_ciz(5)
+yeni_satir
+
+"Kare çizimi:" yaz
+kare_ciz(6)
+yeni_satir
+
+"Kalp çizimi:" yaz
+kalp_ciz()
+yeni_satir
+
+// Grafik örneği
+"Grafik Örneği:" mavi_yaz
+veriler eşittir [10, 25, 15, 30, 20]
+grafik_sonuc eşittir grafik_ciz(veriler)
+
+yeni_satir
+"Tüm örnekler tamamlandı!" yesil_yaz
