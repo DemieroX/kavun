@@ -10,7 +10,20 @@ Kavun is a beginner-friendly, high-level interpreted programming language. Inspi
 ```kavun
 "Merhaba Dünya!" yaz
 ```
-## 📁 Örnek Dosyalar (Example Files)
+
+## 🍈Katkıda Bulunun!
+
+Kavun halka açık ve büyümeye hazır bir programlama dil krokisidir. Yardım etmek isterseniz:
+
+- "Pull request" göndererek özellik(feature), örnek, düzenleme ya da hata düzeltmesi ekleyebilirsin
+- Yeni `.kvn` örnek dosyalarıyla dili tanıtmaya katkı sağlayabilirsin
+- Kendi derleyicinizi(compiler) veya yorumlayıcınızı(interpreter) yapmak isterseniz bu projeyi forklayın!
+
+Yapılan her katkı değerlidir. Kodlamaya yeni başlayanlara Türkçe tabanlı bir dil kazandırmak için birlikte çalışalım!
+
+---
+
+### 📁 Örnek Dosyalar (Example Files)
 
 Kavun dilini öğrenmek için aşağıdaki örnek dosyaları inceleyebilirsiniz:
 
@@ -34,15 +47,7 @@ Kavun dilini öğrenmek için aşağıdaki örnek dosyaları inceleyebilirsiniz:
 - `sozluk_ornegi.kvn` - Sözlük işlemleri
 - `eglenceli_oyun.kvn` - Eğlenceli renkli oyun
 
-## 🍈Katkıda Bulunun!
-
-Kavun halka açık ve büyümeye hazır bir programlama dil krokisidir. Yardım etmek isterseniz:
-
-- "Pull request" göndererek özellik(feature), örnek, düzenleme ya da hata düzeltmesi ekleyebilirsin
-- Yeni `.kvn` örnek dosyalarıyla dili tanıtmaya katkı sağlayabilirsin
-- Kendi derleyicinizi(compiler) veya yorumlayıcınızı(interpreter) yapmak isterseniz bu projeyi forklayın!
-
-Yapılan her katkı değerlidir. Kodlamaya yeni başlayanlara Türkçe tabanlı bir dil kazandırmak için birlikte çalışalım!
+---
 
 ## Temel Özellikler (Key Features)
 
