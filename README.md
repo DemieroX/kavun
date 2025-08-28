@@ -212,10 +212,7 @@ sayı ile kontrol_et işi:
     "Devam ediyor" yaz
 bitir
 ```
-
-## 🆕 Yeni Özellikler (New Features)
-
-### Matematik ve Rastgele Sayılar (Math & Random Numbers)
+## Matematik ve Rastgele Sayılar (Math & Random Numbers)
 
 ```kavun
 // Rastgele sayı üretme
@@ -234,7 +231,7 @@ mutlak_deger eşittir mutlak(-5)
 yuvarlanmis eşittir yuvarla(3.14159, 2)
 ```
 
-### Liste İşlemleri (List Operations)
+## Liste İşlemleri (List Operations)
 
 ```kavun
 // Liste oluşturma
@@ -257,7 +254,7 @@ meyveler.sil(2)
 "Liste uzunluğu: " + len(meyveler) yaz
 ```
 
-### Metin İşlemleri (Text Operations)
+## Metin İşlemleri (Text Operations)
 
 ```kavun
 metin eşittir "Merhaba Kavun!"
@@ -278,7 +275,7 @@ yeni_metin eşittir metin_degistir(metin, "Kavun", "Dünya")
 ilk_5 eşittir metin_kes(metin, 0, 5)
 ```
 
-### Dosya İşlemleri (File Operations)
+## Dosya İşlemleri (File Operations)
 
 ```kavun
 // Dosya yazma
@@ -298,7 +295,7 @@ dosya_var_mi("test.txt")
 klasor_listesi()
 ```
 
-### Zaman İşlemleri (Time Operations)
+## Zaman İşlemleri (Time Operations)
 
 ```kavun
 // Şu anki zaman
@@ -313,7 +310,7 @@ saat()
 2 saniye bekle
 ```
 
-### Trigonometrik Fonksiyonlar (Trigonometric Functions)
+## Trigonometrik Fonksiyonlar (Trigonometric Functions)
 
 ```kavun
 aci eşittir 0.5
@@ -326,7 +323,7 @@ log_deger eşittir log(10)
 log10_deger eşittir log10(100)
 ```
 
-### Yeni Komutlar (New Commands)
+## Artı Komutlar (Other Commands)
 
 ```kavun
 // Yeni satır
