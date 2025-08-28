@@ -1,0 +1,59 @@
+// Basit Sayı Oyunu
+// Simple Number Game
+
+temizle
+"🎮 Basit Sayı Oyununa Hoş Geldiniz! 🎮" yaz
+yeni_satir
+
+"Oyun kuralları:" yaz
+"1. 1-50 arasında bir sayı tutacağım" yaz
+"2. Sen tahmin edeceksin" yaz
+"3. Her tahminde ipucu vereceğim" yaz
+yeni_satir
+
+// Oyun başlat
+gizli_sayi eşittir 1 ile 50 arasi_rastgele()
+tahmin_sayisi eşittir 0
+maksimum_tahmin eşittir 10
+
+"Oyun başlıyor! " + maksimum_tahmin + " hakkın var." yaz
+yeni_satir
+
+tahmin_sayisi küçüktür maksimum_tahmin iken:
+    "Tahmin #" + (tahmin_sayisi + 1) + " (1-50):" yaz
+    tahmin eşittir cevap()
+    tahmin_sayisi eşittir tahmin_sayisi + 1
+    
+    tahmin eşit gizli_sayi ise:
+        "🎉 TEBRİKLER! " + tahmin_sayisi + " denemede doğru tahmin ettin!" yaz
+        "Gizli sayı: " + gizli_sayi yaz
+        kır
+    yoksa tahmin küçüktür gizli_sayi ise:
+        "📈 Daha büyük bir sayı dene!" yaz
+        kalan_hak eşittir maksimum_tahmin - tahmin_sayisi
+        kalan_hak + " hakkın kaldı" yaz
+    yoksa:
+        "📉 Daha küçük bir sayı dene!" yaz
+        kalan_hak eşittir maksimum_tahmin - tahmin_sayisi
+        kalan_hak + " hakkın kaldı" yaz
+    
+    yeni_satir
+bitir
+
+tahmin_sayisi eşit maksimum_tahmin ise:
+    "😔 Maalesef kaybettin!" yaz
+    "Gizli sayı: " + gizli_sayi yaz
+bitir
+
+yeni_satir
+"Oyun bitti! Tekrar oynamak ister misin? (evet/hayır):" yaz
+cevap eşittir cevap()
+
+cevap eşit "evet" ise:
+    "Yeni oyun başlıyor..." yaz
+    2 saniye bekle
+    // Burada oyunu tekrar başlatabilirsin
+    "Oyun yeniden başlatıldı!" yaz
+yoksa:
+    "Güle güle! 👋" yaz
+bitir

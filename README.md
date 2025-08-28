@@ -10,6 +10,28 @@ Kavun is a beginner-friendly, high-level interpreted programming language. Inspi
 ```kavun
 "Merhaba Dünya!" yaz
 ```
+## 📁 Örnek Dosyalar (Example Files)
+
+Kavun dilini öğrenmek için aşağıdaki örnek dosyaları inceleyebilirsiniz:
+
+### Temel Örnekler
+- `hello_world.kvn` - Merhaba Dünya
+- `calculator.kvn` - Basit hesap makinesi
+- `age_checker.kvn` - Yaş kontrolü
+- `count_to_ten.kvn` - Sayma örneği
+- `text_adventure.kvn` - Metin macera oyunu
+
+### Yeni Özellik Örnekleri
+- `rastgele_oyun.kvn` - Rastgele sayı tahmin oyunu
+- `liste_ornegi.kvn` - Liste işlemleri
+- `metin_islemleri.kvn` - Metin işlemleri
+- `dosya_islemleri.kvn` - Dosya işlemleri
+- `basit_oyun.kvn` - Basit sayı oyunu
+- `gelismis_hesap_makinesi.kvn` - Gelişmiş hesap makinesi
+- `renkli_ornekler.kvn` - Renkli yazdırma ve ASCII çizim
+- `sozluk_ornegi.kvn` - Sözlük işlemleri
+- `eglenceli_oyun.kvn` - Eğlenceli renkli oyun
+
 ## 🍈Katkıda Bulunun!
 
 Kavun halka açık ve büyümeye hazır bir programlama dil krokisidir. Yardım etmek isterseniz:
@@ -187,4 +209,182 @@ sayı ile kontrol_et işi:
     bitir
     "Devam ediyor" yaz
 bitir
+```
+
+## 🆕 Yeni Özellikler (New Features)
+
+### Matematik ve Rastgele Sayılar (Math & Random Numbers)
+
+```kavun
+// Rastgele sayı üretme
+rastgele_sayi()
+"Rastgele sayı: " + rastgele yaz
+
+// Belirli aralıkta rastgele sayı
+1 ile 10 arasi_rastgele()
+"1-10 arası: " + rastgele yaz
+
+// Matematik fonksiyonları
+sayi eşittir 16
+karekok eşittir karekok(sayi)
+kuvvet_sonuc eşittir kuvvet(2, 8)
+mutlak_deger eşittir mutlak(-5)
+yuvarlanmis eşittir yuvarla(3.14159, 2)
+```
+
+### Liste İşlemleri (List Operations)
+
+```kavun
+// Liste oluşturma
+meyveler eşittir ["elma", "armut", "muz"]
+sayilar eşittir [1, 2, 3, 4, 5]
+
+// Liste elemanına erişim
+ilk_meyve eşittir meyveler[0]
+
+// Liste elemanı değiştirme
+meyveler[1] eşittir "ayva"
+
+// Listeye eleman ekleme
+meyveler.ekle("kiraz")
+
+// Listeden eleman silme
+meyveler.sil(2)
+
+// Liste uzunluğu
+"Liste uzunluğu: " + len(meyveler) yaz
+```
+
+### Metin İşlemleri (Text Operations)
+
+```kavun
+metin eşittir "Merhaba Kavun!"
+
+// Metin uzunluğu
+metin.uzunluk()
+"Uzunluk: " + metin_uzunluk yaz
+
+// Büyük/küçük harf dönüşümü
+metin.buyuk_harf()
+metin.kucuk_harf()
+
+// Metin arama ve değiştirme
+pozisyon eşittir metin_bul(metin, "Kavun")
+yeni_metin eşittir metin_degistir(metin, "Kavun", "Dünya")
+
+// Metin kesme
+ilk_5 eşittir metin_kes(metin, 0, 5)
+```
+
+### Dosya İşlemleri (File Operations)
+
+```kavun
+// Dosya yazma
+dosya_yaz("test.txt", "Merhaba Dünya!")
+
+// Dosya okuma
+dosya_oku("test.txt")
+"İçerik: " + dosya_icerik yaz
+
+// Dosyaya ekleme
+dosya_ekle("test.txt", "\nYeni satır")
+
+// Dosya kontrolü
+dosya_var_mi("test.txt")
+
+// Klasör listesi
+klasor_listesi()
+```
+
+### Zaman İşlemleri (Time Operations)
+
+```kavun
+// Şu anki zaman
+simdi()
+"Zaman: " + su_an yaz
+
+// Tarih ve saat
+tarih()
+saat()
+
+// Bekleme
+2 saniye bekle
+```
+
+### Trigonometrik Fonksiyonlar (Trigonometric Functions)
+
+```kavun
+aci eşittir 0.5
+sin_deger eşittir sin(aci)
+cos_deger eşittir cos(aci)
+tan_deger eşittir tan(aci)
+
+// Logaritma
+log_deger eşittir log(10)
+log10_deger eşittir log10(100)
+```
+
+### Yeni Komutlar (New Commands)
+
+```kavun
+// Yeni satır
+yeni_satir
+
+// Bekleme
+1.5 saniye bekle
+
+// Ekran temizleme
+temizle
+```
+
+## 🎨 Renkli Yazdırma ve Animasyon (Colored Output & Animation)
+
+```kavun
+// Renkli yazdırma
+"Başarılı!" yesil_yaz
+"Hata!" kirmizi_yaz
+"Uyarı!" sari_yaz
+"Bilgi" mavi_yaz
+"Özel" mor_yaz
+"Not" cyan_yaz
+
+// Animasyonlu yazdırma
+"Yükleniyor..." animasyonlu_yaz
+2 saniye bekle
+animasyon_durdur
+```
+
+## 🎨 ASCII Çizim ve Grafikler (ASCII Drawing & Graphs)
+
+```kavun
+// ASCII çizimler
+ucgen_ciz(5)      // 5 satırlık üçgen
+kare_ciz(4)       // 4x4 kare
+kalp_ciz()        // Kalp çizimi
+
+// Basit grafik
+veriler eşittir [10, 25, 15, 30, 20]
+grafik_ciz(veriler)
+```
+
+## 📚 Sözlük İşlemleri (Dictionary Operations)
+
+```kavun
+// Sözlük oluşturma
+kisi eşittir {"isim": "Ahmet", "yas": 25, "sehir": "İstanbul"}
+
+// Sözlük elemanına erişim
+isim eşittir kisi["isim"]
+yas eşittir kisi["yas"]
+
+// Sözlük elemanı değiştirme
+kisi["yas"] eşittir 26
+
+// Sözlük fonksiyonları
+anahtarlar eşittir sozluk_anahtarlar(kisi)
+degerler eşittir sozluk_degerler(kisi)
+uzunluk eşittir sozluk_uzunluk(kisi)
+
+// Sözlük silme
+silinen eşittir sozluk_sil(kisi, "telefon")
 ```

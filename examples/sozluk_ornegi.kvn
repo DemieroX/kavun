@@ -1,0 +1,53 @@
+// Sözlük İşlemleri Örneği
+// Dictionary Operations Example
+
+"Sözlük İşlemleri Örneği" mavi_yaz
+yeni_satir
+
+// Sözlük oluşturma
+kisi eşittir {"isim": "Ahmet", "yas": 25, "sehir": "İstanbul", "meslek": "Mühendis"}
+"Orijinal sözlük: " + kisi yaz
+
+// Sözlük elemanına erişim
+isim eşittir kisi["isim"]
+yas eşittir kisi["yas"]
+"İsim: " + isim yaz
+"Yaş: " + yas yaz
+
+// Sözlük elemanı değiştirme
+kisi["yas"] eşittir 26
+"Yaş güncellendi: " + kisi yaz
+
+// Sözlüğe yeni eleman ekleme
+kisi["telefon"] eşittir "555-1234"
+"Telefon eklendi: " + kisi yaz
+
+// Sözlük fonksiyonları
+anahtarlar eşittir sozluk_anahtarlar(kisi)
+degerler eşittir sozluk_degerler(kisi)
+uzunluk eşittir sozluk_uzunluk(kisi)
+
+"Anahtarlar: " + anahtarlar yaz
+"Değerler: " + degerler yaz
+"Sözlük uzunluğu: " + uzunluk yaz
+
+// Sözlük üzerinde döngü
+"Kişi bilgileri:" mavi_yaz
+i eşittir 0
+i küçüktür len(anahtarlar) iken:
+    anahtar eşittir anahtarlar[i]
+    deger eşittir kisi[anahtar]
+    anahtar + ": " + deger yaz
+    i eşittir i + 1
+bitir
+
+// Sözlük silme
+silinen eşittir sozluk_sil(kisi, "telefon")
+"Silinen değer: " + silinen yaz
+"Güncellenmiş sözlük: " + kisi yaz
+
+// Yeni sözlük oluşturma
+renkler eşittir {"kirmizi": "FF0000", "yesil": "00FF00", "mavi": "0000FF"}
+"Renk sözlüğü: " + renkler yaz
+
+"Sözlük işlemleri tamamlandı!" yesil_yaz
