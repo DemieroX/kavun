@@ -23,11 +23,11 @@ def builtin_rastgele(min_val=1, max_val=100):
     """Rastgele sayı üret"""
     return random.randint(min_val, max_val)
 
-def builtin_ondalık_rastgele():
+def builtin_ondalik_rastgele():
     """0 ile 1 arasında ondalık rastgele sayı"""
     return random.random()
 
-def builtin_karekök(sayi):
+def builtin_karekok(sayi):
     """Sayının karekökünü al"""
     return math.sqrt(sayi)
 
@@ -67,7 +67,7 @@ def builtin_bekle(saniye):
     """Belirtilen saniye kadar bekle"""
     time.sleep(saniye)
 
-def builtin_şimdi():
+def builtin_simdi():
     """Şu anki zamanı döndür"""
     return datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
@@ -79,7 +79,7 @@ def builtin_saat():
     """Şu anki saati döndür"""
     return datetime.datetime.now().strftime("%H:%M:%S")
 
-def builtin_liste_oluştur(*elemanlar):
+def builtin_liste_olustur(*elemanlar):
     """Yeni liste oluştur"""
     return list(elemanlar)
 
@@ -136,11 +136,11 @@ def builtin_metin_degistir(metin, eski, yeni):
     """Metindeki eski kısmı yeni ile değiştir"""
     return str(metin).replace(str(eski), str(yeni))
 
-def builtin_büyük_harf(metin):
+def builtin_buyuk_harf(metin):
     """Metni büyük harfe çevir"""
     return str(metin).upper()
 
-def builtin_küçük_harf(metin):
+def builtin_kucuk_harf(metin):
     """Metni küçük harfe çevir"""
     return str(metin).lower()
 
@@ -186,7 +186,7 @@ def builtin_dosya_sil(dosya_adi):
     except Exception as e:
         raise RuntimeError(f"Dosya silme hatası: {e}")
 
-def builtin_klasor_oluştur(klasor_adi):
+def builtin_klasor_olustur(klasor_adi):
     """Klasör oluştur"""
     try:
         os.makedirs(klasor_adi, exist_ok=True)
@@ -210,7 +210,7 @@ animation_thread = None
 
 # --- New Built-in Functions ---
 
-def builtin_kırmızı_yaz(metin):
+def builtin_kirmizi_yaz(metin):
     """Metni kırmızı renkte yazdır"""
     print(Fore.RED + str(metin) + Style.RESET_ALL)
 
@@ -218,7 +218,7 @@ def builtin_yesil_yaz(metin):
     """Metni yeşil renkte yazdır"""
     print(Fore.GREEN + str(metin) + Style.RESET_ALL)
 
-def builtin_sarı_yaz(metin):
+def builtin_sari_yaz(metin):
     """Metni sarı renkte yazdır"""
     print(Fore.YELLOW + str(metin) + Style.RESET_ALL)
 
@@ -230,9 +230,9 @@ def builtin_mor_yaz(metin):
     """Metni mor renkte yazdır"""
     print(Fore.MAGENTA + str(metin) + Style.RESET_ALL)
 
-def builtin_turkuaz_yaz(metin):
-    """Metni turkuaz renkte yazdır"""
-    print(Fore.turkuaz + str(metin) + Style.RESET_ALL)
+def builtin_cyan_yaz(metin):
+    """Metni cyan renkte yazdır"""
+    print(Fore.CYAN + str(metin) + Style.RESET_ALL)
 
 def builtin_animasyonlu_yaz(metin):
     """Metni animasyonlu olarak yazdır"""
@@ -259,12 +259,12 @@ def builtin_animasyon_durdur():
     if animation_thread:
         animation_thread.join()
 
-def builtin_üçgen_çiz(boyut):
+def builtin_ucgen_ciz(boyut):
     """ASCII üçgen çiz"""
     for i in range(boyut):
         print(" " * (boyut - i - 1) + "*" * (2 * i + 1))
 
-def builtin_kare_çiz(boyut):
+def builtin_kare_ciz(boyut):
     """ASCII kare çiz"""
     for i in range(boyut):
         if i == 0 or i == boyut - 1:
@@ -272,7 +272,7 @@ def builtin_kare_çiz(boyut):
         else:
             print("*" + " " * (boyut - 2) + "*")
 
-def builtin_kalp_çiz():
+def builtin_kalp_ciz():
     """ASCII kalp çiz"""
     heart = [
         "  ***   ***  ",
@@ -288,7 +288,7 @@ def builtin_kalp_çiz():
     for line in heart:
         print(Fore.RED + line + Style.RESET_ALL)
 
-def builtin_grafik_çiz(veriler):
+def builtin_grafik_ciz(veriler):
     """Basit çubuk grafik çiz"""
     if not veriler:
         return
@@ -299,60 +299,60 @@ def builtin_grafik_çiz(veriler):
         bar = "█" * bar_length
         print(f"{i+1:2d}: {bar} {val}")
 
-def builtin_sözlük_oluştur(*elemanlar):
+def builtin_sozluk_olustur(*elemanlar):
     """Yeni sözlük oluştur"""
     if len(elemanlar) % 2 != 0:
         raise RuntimeError("Sözlük için anahtar-değer çiftleri gerekli")
     
-    sözlük = {}
+    sozluk = {}
     for i in range(0, len(elemanlar), 2):
-        sözlük[elemanlar[i]] = elemanlar[i + 1]
-    return sözlük
+        sozluk[elemanlar[i]] = elemanlar[i + 1]
+    return sozluk
 
-def builtin_sözlük_eleman(sözlük, anahtar):
+def builtin_sozluk_eleman(sozluk, anahtar):
     """Sözlükten eleman al"""
-    if not isinstance(sözlük, dict):
+    if not isinstance(sozluk, dict):
         raise RuntimeError("İlk parametre sözlük olmalı")
-    return sözlük.get(anahtar)
+    return sozluk.get(anahtar)
 
-def builtin_sözlük_ekle(sözlük, anahtar, deger):
+def builtin_sozluk_ekle(sozluk, anahtar, deger):
     """Sözlüğe eleman ekle"""
-    if not isinstance(sözlük, dict):
+    if not isinstance(sozluk, dict):
         raise RuntimeError("İlk parametre sözlük olmalı")
-    sözlük[anahtar] = deger
-    return sözlük
+    sozluk[anahtar] = deger
+    return sozluk
 
-def builtin_sözlük_sil(sözlük, anahtar):
+def builtin_sozluk_sil(sozluk, anahtar):
     """Sözlükten eleman sil"""
-    if not isinstance(sözlük, dict):
+    if not isinstance(sozluk, dict):
         raise RuntimeError("İlk parametre sözlük olmalı")
-    if anahtar in sözlük:
-        return sözlük.pop(anahtar)
+    if anahtar in sozluk:
+        return sozluk.pop(anahtar)
     return None
 
-def builtin_sözlük_anahtarlar(sözlük):
+def builtin_sozluk_anahtarlar(sozluk):
     """Sözlüğün anahtarlarını döndür"""
-    if not isinstance(sözlük, dict):
+    if not isinstance(sozluk, dict):
         raise RuntimeError("Parametre sözlük olmalı")
-    return list(sözlük.keys())
+    return list(sozluk.keys())
 
-def builtin_sözlük_değerler(sözlük):
+def builtin_sozluk_degerler(sozluk):
     """Sözlüğün değerlerini döndür"""
-    if not isinstance(sözlük, dict):
+    if not isinstance(sozluk, dict):
         raise RuntimeError("Parametre sözlük olmalı")
-    return list(sözlük.values())
+    return list(sozluk.values())
 
-def builtin_sözlük_uzunluk(sözlük):
+def builtin_sozluk_uzunluk(sozluk):
     """Sözlüğün uzunluğunu döndür"""
-    if not isinstance(sözlük, dict):
+    if not isinstance(sozluk, dict):
         raise RuntimeError("Parametre sözlük olmalı")
-    return len(sözlük)
+    return len(sozluk)
 
 # Built-in functions dictionary
 builtin_functions = {
     'rastgele': builtin_rastgele,
-    'ondalık_rastgele': builtin_ondalık_rastgele,
-    'karekök': builtin_karekök,
+    'ondalik_rastgele': builtin_ondalik_rastgele,
+    'karekok': builtin_karekok,
     'kuvvet': builtin_kuvvet,
     'mutlak': builtin_mutlak,
     'yuvarla': builtin_yuvarla,
@@ -362,10 +362,10 @@ builtin_functions = {
     'log': builtin_log,
     'log10': builtin_log10,
     'bekle': builtin_bekle,
-    'şimdi': builtin_şimdi,
+    'simdi': builtin_simdi,
     'tarih': builtin_tarih,
     'saat': builtin_saat,
-    'liste_oluştur': builtin_liste_oluştur,
+    'liste_olustur': builtin_liste_olustur,
     'liste_ekle': builtin_liste_ekle,
     'liste_uzunluk': builtin_liste_uzunluk,
     'liste_eleman': builtin_liste_eleman,
@@ -374,37 +374,37 @@ builtin_functions = {
     'metin_kes': builtin_metin_kes,
     'metin_bul': builtin_metin_bul,
     'metin_degistir': builtin_metin_degistir,
-    'büyük_harf': builtin_büyük_harf,
-    'küçük_harf': builtin_küçük_harf,
+    'buyuk_harf': builtin_buyuk_harf,
+    'kucuk_harf': builtin_kucuk_harf,
     'dosya_oku': builtin_dosya_oku,
     'dosya_yaz': builtin_dosya_yaz,
     'dosya_ekle': builtin_dosya_ekle,
     'dosya_var_mi': builtin_dosya_var_mi,
     'dosya_sil': builtin_dosya_sil,
-    'klasor_oluştur': builtin_klasor_oluştur,
+    'klasor_olustur': builtin_klasor_olustur,
     'klasor_listesi': builtin_klasor_listesi,
     # Yeni renkli yazdırma fonksiyonları
-    'kırmızı_yaz': builtin_kırmızı_yaz,
+    'kirmizi_yaz': builtin_kirmizi_yaz,
     'yesil_yaz': builtin_yesil_yaz,
-    'sarı_yaz': builtin_sarı_yaz,
+    'sari_yaz': builtin_sari_yaz,
     'mavi_yaz': builtin_mavi_yaz,
     'mor_yaz': builtin_mor_yaz,
-    'turkuaz_yaz': builtin_turkuaz_yaz,
+    'cyan_yaz': builtin_cyan_yaz,
     'animasyonlu_yaz': builtin_animasyonlu_yaz,
     'animasyon_durdur': builtin_animasyon_durdur,
     # Çizim fonksiyonları
-    'üçgen_çiz': builtin_üçgen_çiz,
-    'kare_çiz': builtin_kare_çiz,
-    'kalp_çiz': builtin_kalp_çiz,
-    'grafik_çiz': builtin_grafik_çiz,
+    'ucgen_ciz': builtin_ucgen_ciz,
+    'kare_ciz': builtin_kare_ciz,
+    'kalp_ciz': builtin_kalp_ciz,
+    'grafik_ciz': builtin_grafik_ciz,
     # Sözlük işlemleri
-    'sözlük_oluştur': builtin_sözlük_oluştur,
-    'sözlük_eleman': builtin_sözlük_eleman,
-    'sözlük_ekle': builtin_sözlük_ekle,
-    'sözlük_sil': builtin_sözlük_sil,
-    'sözlük_anahtarlar': builtin_sözlük_anahtarlar,
-    'sözlük_değerler': builtin_sözlük_değerler,
-    'sözlük_uzunluk': builtin_sözlük_uzunluk,
+    'sozluk_olustur': builtin_sozluk_olustur,
+    'sozluk_eleman': builtin_sozluk_eleman,
+    'sozluk_ekle': builtin_sozluk_ekle,
+    'sozluk_sil': builtin_sozluk_sil,
+    'sozluk_anahtarlar': builtin_sozluk_anahtarlar,
+    'sozluk_degerler': builtin_sozluk_degerler,
+    'sozluk_uzunluk': builtin_sozluk_uzunluk,
 }
 
 # --- Helpers ---
@@ -665,8 +665,8 @@ def run_block(lines, start=0):
             idx += 1
             continue
 
-        # yeni satır: 'yeni_satır'
-        if line == "yeni_satır":
+        # yeni satır: 'yeni_satir'
+        if line == "yeni_satir":
             print()
             idx += 1
             continue
@@ -766,21 +766,21 @@ def run_block(lines, start=0):
             idx += 1
             continue
 
-        # metin büyük harf: 'metin_adi.büyük_harf()'
-        m = re.match(r'^(\w+)\.büyük_harf\(\)$', line)
+        # metin büyük harf: 'metin_adi.buyuk_harf()'
+        m = re.match(r'^(\w+)\.buyuk_harf\(\)$', line)
         if m:
             var_name = m.group(1)
             text_var = get_var_mapping().get(var_name, "")
-            set_var(var_name + "_büyük", str(text_var).upper())
+            set_var(var_name + "_buyuk", str(text_var).upper())
             idx += 1
             continue
 
-        # metin küçük harf: 'metin_adi.küçük_harf()'
-        m = re.match(r'^(\w+)\.küçük_harf\(\)$', line)
+        # metin küçük harf: 'metin_adi.kucuk_harf()'
+        m = re.match(r'^(\w+)\.kucuk_harf\(\)$', line)
         if m:
             var_name = m.group(1)
             text_var = get_var_mapping().get(var_name, "")
-            set_var(var_name + "_küçük", str(text_var).lower())
+            set_var(var_name + "_kucuk", str(text_var).lower())
             idx += 1
             continue
 
@@ -790,7 +790,7 @@ def run_block(lines, start=0):
             try:
                 dosya_adi = m.group(1)
                 icerik = builtin_dosya_oku(dosya_adi)
-                set_var("dosya_içerik", icerik)
+                set_var("dosya_icerik", icerik)
             except Exception as ex:
                 print(f"[Hata satır {idx+1}] {ex}")
             idx += 1
@@ -822,8 +822,8 @@ def run_block(lines, start=0):
             continue
 
         # zaman bilgileri
-        if line == "şimdi()":
-            set_var("su_an", builtin_şimdi())
+        if line == "simdi()":
+            set_var("su_an", builtin_simdi())
             idx += 1
             continue
 
@@ -862,12 +862,12 @@ def run_block(lines, start=0):
             idx += 1
             continue
 
-        # renkli yazdırma: 'metin kırmızı_yaz'
-        m = re.match(r'^(.+)\s+kırmızı_yaz$', line)
+        # renkli yazdırma: 'metin kirmizi_yaz'
+        m = re.match(r'^(.+)\s+kirmizi_yaz$', line)
         if m:
             try:
                 metin = evaluate(m.group(1).strip())
-                builtin_kırmızı_yaz(metin)
+                builtin_kirmizi_yaz(metin)
             except Exception as ex:
                 print(f"[Hata satır {idx+1}] Kırmızı yazdırma hatası: {ex}")
             idx += 1
@@ -884,12 +884,12 @@ def run_block(lines, start=0):
             idx += 1
             continue
 
-        # renkli yazdırma: 'metin sarı_yaz'
-        m = re.match(r'^(.+)\s+sarı_yaz$', line)
+        # renkli yazdırma: 'metin sari_yaz'
+        m = re.match(r'^(.+)\s+sari_yaz$', line)
         if m:
             try:
                 metin = evaluate(m.group(1).strip())
-                builtin_sarı_yaz(metin)
+                builtin_sari_yaz(metin)
             except Exception as ex:
                 print(f"[Hata satır {idx+1}] Sarı yazdırma hatası: {ex}")
             idx += 1
@@ -917,14 +917,14 @@ def run_block(lines, start=0):
             idx += 1
             continue
 
-        # renkli yazdırma: 'metin turkuaz_yaz'
-        m = re.match(r'^(.+)\s+turkuaz_yaz$', line)
+        # renkli yazdırma: 'metin cyan_yaz'
+        m = re.match(r'^(.+)\s+cyan_yaz$', line)
         if m:
             try:
                 metin = evaluate(m.group(1).strip())
-                builtin_turkuaz_yaz(metin)
+                builtin_cyan_yaz(metin)
             except Exception as ex:
-                print(f"[Hata satır {idx+1}] Turkuaz yazdırma hatası: {ex}")
+                print(f"[Hata satır {idx+1}] Cyan yazdırma hatası: {ex}")
             idx += 1
             continue
 
@@ -945,39 +945,39 @@ def run_block(lines, start=0):
             idx += 1
             continue
 
-        # çizim komutları: 'üçgen_çiz(5)'
-        m = re.match(r'^üçgen_çiz\((\d+)\)$', line)
+        # çizim komutları: 'ucgen_ciz(5)'
+        m = re.match(r'^ucgen_ciz\((\d+)\)$', line)
         if m:
             try:
                 boyut = int(m.group(1))
-                builtin_üçgen_çiz(boyut)
+                builtin_ucgen_ciz(boyut)
             except Exception as ex:
                 print(f"[Hata satır {idx+1}] Üçgen çizme hatası: {ex}")
             idx += 1
             continue
 
-        # çizim komutları: 'kare_çiz(4)'
-        m = re.match(r'^kare_çiz\((\d+)\)$', line)
+        # çizim komutları: 'kare_ciz(4)'
+        m = re.match(r'^kare_ciz\((\d+)\)$', line)
         if m:
             try:
                 boyut = int(m.group(1))
-                builtin_kare_çiz(boyut)
+                builtin_kare_ciz(boyut)
             except Exception as ex:
                 print(f"[Hata satır {idx+1}] Kare çizme hatası: {ex}")
             idx += 1
             continue
 
-        # çizim komutları: 'kalp_çiz()'
-        if line == "kalp_çiz()":
+        # çizim komutları: 'kalp_ciz()'
+        if line == "kalp_ciz()":
             try:
-                builtin_kalp_çiz()
+                builtin_kalp_ciz()
             except Exception as ex:
                 print(f"[Hata satır {idx+1}] Kalp çizme hatası: {ex}")
             idx += 1
             continue
 
-        # grafik çiz: 'grafik_çiz([1, 3, 2, 5, 4])'
-        m = re.match(r'^grafik_çiz\(\[(.*)\]\)$', line)
+        # grafik çiz: 'grafik_ciz([1, 3, 2, 5, 4])'
+        m = re.match(r'^grafik_ciz\(\[(.*)\]\)$', line)
         if m:
             try:
                 veriler_str = m.group(1).strip()
@@ -985,13 +985,13 @@ def run_block(lines, start=0):
                     veriler = [evaluate(v.strip()) for v in split_args(veriler_str)]
                 else:
                     veriler = []
-                builtin_grafik_çiz(veriler)
+                builtin_grafik_ciz(veriler)
             except Exception as ex:
                 print(f"[Hata satır {idx+1}] Grafik çizme hatası: {ex}")
             idx += 1
             continue
 
-        # sözlük oluştur: 'sözlük_adi eşittir {"anahtar1": deger1, "anahtar2": deger2}'
+        # sözlük oluştur: 'sozluk_adi eşittir {"anahtar1": deger1, "anahtar2": deger2}'
         m = re.match(r'^(\w+)\s+eşittir\s+\{(.*)\}$', line)
         if m:
             try:
@@ -1028,16 +1028,16 @@ def run_block(lines, start=0):
                         current_value = buffer.strip().strip('"\'')
                         pairs.extend([current_key, current_value])
                     
-                    sözlük = builtin_sözlük_oluştur(*pairs)
+                    sozluk = builtin_sozluk_olustur(*pairs)
                 else:
-                    sözlük = {}
-                set_var(var_name, sözlük)
+                    sozluk = {}
+                set_var(var_name, sozluk)
             except Exception as ex:
                 print(f"[Hata satır {idx+1}] Sözlük oluşturma hatası: {ex}")
             idx += 1
             continue
 
-        # sözlük elemanına erişim: 'eleman eşittir sözlük_adi["anahtar"]'
+        # sözlük elemanına erişim: 'eleman eşittir sozluk_adi["anahtar"]'
         m = re.match(r'^(\w+)\s+eşittir\s+(\w+)\["([^"]+)"\]$', line)
         if m:
             try:
@@ -1048,14 +1048,14 @@ def run_block(lines, start=0):
                 if not isinstance(dict_var, dict):
                     print(f"[Hata satır {idx+1}] {dict_name} bir sözlük değil")
                 else:
-                    value = builtin_sözlük_eleman(dict_var, key)
+                    value = builtin_sozluk_eleman(dict_var, key)
                     set_var(var_name, value)
             except Exception as ex:
                 print(f"[Hata satır {idx+1}] Sözlük erişim hatası: {ex}")
             idx += 1
             continue
 
-        # sözlük elemanı değiştir: 'sözlük_adi["anahtar"] eşittir yeni_deger'
+        # sözlük elemanı değiştir: 'sozluk_adi["anahtar"] eşittir yeni_deger'
         m = re.match(r'^(\w+)\["([^"]+)"\]\s+eşittir\s+(.+)$', line)
         if m:
             try:
@@ -1066,7 +1066,7 @@ def run_block(lines, start=0):
                 if not isinstance(dict_var, dict):
                     print(f"[Hata satır {idx+1}] {dict_name} bir sözlük değil")
                 else:
-                    builtin_sözlük_ekle(dict_var, key, new_value)
+                    builtin_sozluk_ekle(dict_var, key, new_value)
                     set_var(dict_name, dict_var)
             except Exception as ex:
                 print(f"[Hata satır {idx+1}] Sözlük değiştirme hatası: {ex}")
