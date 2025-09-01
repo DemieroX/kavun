@@ -44,7 +44,7 @@ Kavun dilini öğrenmek için aşağıdaki örnek dosyaları inceleyebilirsiniz:
 
 ### Yeni Eklenen Özellikler
 - `renkli_ornekler.kvn` - Renkli yazdırma ve ASCII çizim
-- `sozluk_ornegi.kvn` - Sözlük işlemleri
+- `sözlük_ornegi.kvn` - Sözlük işlemleri
 - `eglenceli_oyun.kvn` - Eğlenceli renkli oyun
 
 ---
@@ -288,7 +288,7 @@ dosya_yaz("test.txt", "Merhaba Dünya!")
 
 // Dosya okuma
 dosya_oku("test.txt")
-"İçerik: " + dosya_icerik yaz
+"İçerik: " + dosya_içerik yaz
 
 // Dosyaya ekleme
 dosya_ekle("test.txt", "\nYeni satır")
@@ -332,7 +332,7 @@ log10_deger eşittir log10(100)
 
 ```kavun
 // Yeni satır
-yeni_satir
+yeni_satır
 
 // Bekleme
 1.5 saniye bekle
@@ -346,8 +346,8 @@ temizle
 ```kavun
 // Renkli yazdırma
 "Başarılı!" yesil_yaz
-"Hata!" kirmizi_yaz
-"Uyarı!" sari_yaz
+"Hata!" kırmızı_yaz
+"Uyarı!" sarı_yaz
 "Bilgi" mavi_yaz
 "Özel" mor_yaz
 "Not" cyan_yaz
@@ -385,10 +385,10 @@ yas eşittir kisi["yas"]
 kisi["yas"] eşittir 26
 
 // Sözlük fonksiyonları
-anahtarlar eşittir sozluk_anahtarlar(kisi)
-degerler eşittir sozluk_degerler(kisi)
-uzunluk eşittir sozluk_uzunluk(kisi)
+anahtarlar eşittir sözlük_anahtarlar(kisi)
+degerler eşittir sözlük_degerler(kisi)
+uzunluk eşittir sözlük_uzunluk(kisi)
 
 // Sözlük silme
-silinen eşittir sozluk_sil(kisi, "telefon")
+silinen eşittir sözlük_sil(kisi, "telefon")
 ```
