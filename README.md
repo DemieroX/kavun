@@ -23,32 +23,6 @@ Yapılan her katkı değerlidir. Kodlamaya yeni başlayanlara Türkçe tabanlı 
 
 ---
 
-### 📁 Örnek Dosyalar (Example Files)
-
-Kavun dilini öğrenmek için aşağıdaki örnek dosyaları inceleyebilirsiniz:
-
-### Temel Örnekler
-- `hello_world.kvn` - Merhaba Dünya
-- `calculator.kvn` - Basit hesap makinesi
-- `age_checker.kvn` - Yaş kontrolü
-- `count_to_ten.kvn` - Sayma örneği
-- `text_adventure.kvn` - Metin macera oyunu
-
-### Yeni Özellik Örnekleri
-- `rastgele_oyun.kvn` - Rastgele sayı tahmin oyunu
-- `liste_ornegi.kvn` - Liste işlemleri
-- `metin_islemleri.kvn` - Metin işlemleri
-- `dosya_islemleri.kvn` - Dosya işlemleri
-- `basit_oyun.kvn` - Basit sayı oyunu
-- `gelismis_hesap_makinesi.kvn` - Gelişmiş hesap makinesi
-
-### Yeni Eklenen Özellikler
-- `renkli_ornekler.kvn` - Renkli yazdırma ve ASCII çizim
-- `sözlük_ornegi.kvn` - Sözlük işlemleri
-- `eglenceli_oyun.kvn` - Eğlenceli renkli oyun
-
----
-
 ## Temel Özellikler (Key Features)
 
 - Turkish-inspired syntax (`eşittir`, `yaz`, `ise`, `bitir`, etc.) and syntax structure, similar to a spoken language, making it very easy to understand.
