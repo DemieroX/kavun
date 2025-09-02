@@ -3,6 +3,7 @@
 </div>
 
 ---
+## **Şu anda dildeki bazı komutların syntax yazımı İngilizce harf ile yazılmaktadır. Yakında düzeltilecektir!**
 
 Kavun, yeni başlayanlar için uygun, high-level bir programlama dilidir. Python, BASIC ve HyperTalk'tan esinlenerek, okunabilir ve anlaşılır olacak şekilde tasarlanmıştır, Türkçe benzeri bir syntax kullanır ve ana dili Türkçe olanlara programlama dillerinin nasıl çalıştığını anlatmakda yardımcı olmak için tanıdık bir yazım biçimi oluşturmayı hedefler.
 
