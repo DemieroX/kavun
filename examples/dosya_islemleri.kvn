@@ -2,31 +2,31 @@
 // File Operations Example
 
 "Dosya İşlemleri Örneği" yaz
-yeni_satir
+yeni_satır
 
 // Dosyaya yaz
-dosya_yaz("test.txt", "Bu bir test dosyasıdır.\nKavun dili ile yazılmıştır.")
+dosya_yaz("test.txt", "Bu bir test dosyasıdır.Kavun dili ile yazılmıştır.")
 "Dosya oluşturuldu: test.txt" yaz
 
 // Dosyayı oku
 dosya_oku("test.txt")
 "Okunan içerik:" yaz
-dosya_icerik yaz
+dosya_içerik yaz
 
 // Zaman bilgileri
-simdi()
-"Şu anki zaman: " + su_an yaz
+şimdi()
+"Şu anki zaman: " + şu_an yaz
 
 tarih()
-"Bugünün tarihi: " + bugun yaz
+"Bugünün tarihi: " + bugün yaz
 
 saat()
-"Şu anki saat: " + su_saat yaz
+"Şu anki saat: " + şu_saat yaz
 
 // Matematik fonksiyonları
 sayi eşittir 16
-karekok_sonuc eşittir karekok(sayi)
-sayi + " sayısının karekökü: " + karekok_sonuc yaz
+karekök_sonuç eşittir karekök(sayi)
+sayi + " sayısının karekökü: " + karekök_sonuç yaz
 
 // Rastgele sayı
 rastgele_sonuc eşittir rastgele()
