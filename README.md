@@ -9,17 +9,6 @@ Kavun is a beginner-friendly, high-level interpreted programming language. Inspi
 ```kavun
 "Merhaba Dünya!" yaz
 ```
-
-## 🍈Katkıda Bulunun!
-
-Kavun halka açık ve büyümeye hazır bir programlama dil krokisidir. Yardım etmek isterseniz:
-
-- "Pull request" göndererek özellik(feature), örnek, düzenleme ya da hata düzeltmesi ekleyebilirsin
-- Yeni `.kvn` örnek dosyalarıyla dili tanıtmaya katkı sağlayabilirsin
-- Kendi derleyicinizi(compiler) veya yorumlayıcınızı(interpreter) yapmak isterseniz bu projeyi forklayın!
-
-Yapılan her katkı değerlidir. Kodlamaya yeni başlayanlara Türkçe tabanlı bir dil kazandırmak için birlikte çalışalım!
-
 ---
 
 ## Temel Özellikler (Key Features)
