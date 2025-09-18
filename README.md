@@ -3,8 +3,6 @@
 </div>
 
 ---
-## **Şu anda dildeki bazı komutların syntax yazımı İngilizce harf ile yazılmaktadır. Yakında düzeltilecektir!**
-
 Kavun, yeni başlayanlar için uygun, high-level bir programlama dilidir. Python, BASIC ve HyperTalk'tan esinlenerek, okunabilir ve anlaşılır olacak şekilde tasarlanmıştır, Türkçe benzeri bir syntax kullanır ve ana dili Türkçe olanlara programlama dillerinin nasıl çalıştığını anlatmakda yardımcı olmak için tanıdık bir yazım biçimi oluşturmayı hedefler.
 
 Kavun is a beginner-friendly, high-level interpreted programming language. Inspired by Python, BASIC, and HyperTalk, it uses a natural Turkish-like syntax, designed to be readable and expressive. This language strives to have a very readable code base for native Turkish speakers to help understand how programming languages work while keeping in-tact the basic functionalities.
@@ -26,7 +24,7 @@ Yapılan her katkı değerlidir. Kodlamaya yeni başlayanlara Türkçe tabanlı 
 
 ## Temel Özellikler (Key Features)
 
-- Turkish-inspired syntax (`eşittir`, `yaz`, `ise`, `bitir`, etc.) and syntax structure, similar to a spoken language, making it very easy to understand.
+- Turkish-inspired syntax (`eşittir`, `yaz`, `ise`, `bitir`, etc.) and syntax strüçture, similar to a spoken language, making it very easy to understand.
 - The language is whitespace sensitive, using “spaces” and indenting instead of curly braces.
 - Natural function calls and flow control to keep things straight forward.
 - Beginner-friendly and helps to teach the fundamentals of coding.
@@ -146,7 +144,7 @@ Kavun supports two types of function call syntax:
 ```
 iş topla(3, 4)
 ```
-Her iki yazım da aynı sonucu verir. Tercihinize göre istediğinizi kullanabilirsiniz:
+Her iki yazım da aynı sonuçu verir. Tercihinize göre istediğinizi kullanabilirsiniz:
 
 Both function calls behave the same, use it however you like:
 ```
@@ -196,7 +194,7 @@ bitir
 
 ```kavun
 // Rastgele sayı üretme
-rastgele_sayi()
+rastgele_sayı()
 "Rastgele sayı: " + rastgele yaz
 
 // Belirli aralıkta rastgele sayı
@@ -205,9 +203,9 @@ rastgele_sayi()
 
 // Matematik fonksiyonları
 sayi eşittir 16
-karekok eşittir karekok(sayi)
-kuvvet_sonuc eşittir kuvvet(2, 8)
-mutlak_deger eşittir mutlak(-5)
+karekök eşittir karekök(sayi)
+kuvvet_sonuç eşittir kuvvet(2, 8)
+mutlak_değer eşittir mutlak(-5)
 yuvarlanmis eşittir yuvarla(3.14159, 2)
 ```
 
@@ -244,8 +242,8 @@ metin.uzunluk()
 "Uzunluk: " + metin_uzunluk yaz
 
 // Büyük/küçük harf dönüşümü
-metin.buyuk_harf()
-metin.kucuk_harf()
+metin.büyük_harf()
+metin.küçük_harf()
 
 // Metin arama ve değiştirme
 pozisyon eşittir metin_bul(metin, "Kavun")
@@ -269,18 +267,18 @@ dosya_oku("test.txt")
 dosya_ekle("test.txt", "\nYeni satır")
 
 // Dosya kontrolü
-dosya_var_mi("test.txt")
+dosya_var_mı("test.txt")
 
 // Klasör listesi
-klasor_listesi()
+klasör_listesi()
 ```
 
 ### Zaman İşlemleri (Time Operations)
 
 ```kavun
 // Şu anki zaman
-simdi()
-"Zaman: " + su_an yaz
+şimdi()
+"Zaman: " + şu_an yaz
 
 // Tarih ve saat
 tarih()
@@ -293,14 +291,14 @@ saat()
 ### Trigonometrik Fonksiyonlar (Trigonometric Functions)
 
 ```kavun
-aci eşittir 0.5
-sin_deger eşittir sin(aci)
-cos_deger eşittir cos(aci)
-tan_deger eşittir tan(aci)
+açı eşittir 0.5
+sin_değer eşittir sin(açı)
+cos_değer eşittir cos(açı)
+tan_değer eşittir tan(açı)
 
 // Logaritma
-log_deger eşittir log(10)
-log10_deger eşittir log10(100)
+log_değer eşittir log(10)
+log10_değer eşittir log10(100)
 ```
 
 ### Artı Komutlar (Other Commands)
@@ -316,11 +314,11 @@ yeni_satır
 temizle
 ```
 
-### 🎨 Renkli Yazdırma ve Animasyon (Colored Output & Animation)
+### Renkli Yazdırma ve Animasyon (Colored Output & Animation)
 
 ```kavun
 // Renkli yazdırma
-"Başarılı!" yesil_yaz
+"Başarılı!" yeşil_yaz
 "Hata!" kırmızı_yaz
 "Uyarı!" sarı_yaz
 "Bilgi" mavi_yaz
@@ -333,20 +331,20 @@ temizle
 animasyon_durdur
 ```
 
-### 🎨 ASCII Çizim ve Grafikler (ASCII Drawing & Graphs)
+### ASCII Çizim ve Grafikler (ASCII Drawing & Graphs)
 
 ```kavun
 // ASCII çizimler
-ucgen_ciz(5)      // 5 satırlık üçgen
-kare_ciz(4)       // 4x4 kare
-kalp_ciz()        // Kalp çizimi
+üçgen_çiz(5)      // 5 satırlık üçgen
+kare_çiz(4)       // 4x4 kare
+kalp_çiz()        // Kalp çizimi
 
 // Basit grafik
 veriler eşittir [10, 25, 15, 30, 20]
-grafik_ciz(veriler)
+grafik_çiz(veriler)
 ```
 
-### 📚 Sözlük İşlemleri (Dictionary Operations)
+### Sözlük İşlemleri (Dictionary Operations)
 
 ```kavun
 // Sözlük oluşturma
@@ -361,7 +359,7 @@ kisi["yas"] eşittir 26
 
 // Sözlük fonksiyonları
 anahtarlar eşittir sözlük_anahtarlar(kisi)
-degerler eşittir sözlük_degerler(kisi)
+değerler eşittir sözlük_değerler(kisi)
 uzunluk eşittir sözlük_uzunluk(kisi)
 
 // Sözlük silme
